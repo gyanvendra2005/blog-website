@@ -50,6 +50,7 @@ bookRouter.use(async (c, next) => {
     try {
         const payload = await verify(jwt, c.env.JWT_SECRET);
         if (payload) {
+			// @ts-ignore
             c.set("userId", payload.id);
             return next(); // Proceed to the next middleware
         } else {
