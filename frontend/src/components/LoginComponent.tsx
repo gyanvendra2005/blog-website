@@ -24,7 +24,7 @@ export const LoginComponent = ({type}: {type: "signup" | "signin"})=>{
         console.log(jwt);
         
         localStorage.setItem("token",jwt.jwt);
-        navigate("/blog");
+        navigate("/blogs");
       } catch (e) {
             alert("Invalid credentials")
       }
