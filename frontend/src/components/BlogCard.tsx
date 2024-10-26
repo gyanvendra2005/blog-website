@@ -100,9 +100,6 @@ export const BlogCard = ({
     </div>
 </div>
 </div>
-
-
-
     )
 
     
