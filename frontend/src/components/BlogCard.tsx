@@ -77,7 +77,7 @@ interface BlogProps {
     authorName: string;
     title: string;
     content: string;
-    createdAt: Date;
+    // createdAt: Date;
     averageRating?: number; // Optional average rating
 }
 
@@ -85,7 +85,7 @@ export const BlogCard = ({
     authorName,
     title,
     content,
-    createdAt,
+    // createdAt,
     averageRating = 0, // Default to 0 if no average rating is provided
 }: BlogProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -107,7 +107,7 @@ export const BlogCard = ({
                             <span className="font-medium">{authorName}</span>
                             <span className="font-normal text-slate-500">
                                   
-                                {createdAt.toLocaleDateString()}
+                                {/* {createdAt} */}
                             </span>
                         </div>
                         <button

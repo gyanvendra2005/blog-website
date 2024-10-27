@@ -9,7 +9,7 @@ interface Blog{
     content:string;
     title:string;
     name:string;
-    createdAt:Date;
+    // createdAt:Date;
     author:{
         name:string
     };
@@ -49,7 +49,7 @@ export const Blogs = () => {
                             authorName={blog.author.name || "Anonymous"}
                             title={blog.title}
                             content={blog.content}
-                            createdAt={blog.createdAt}
+                            // createdAt={"2024-04-07"}
                         />
                     ))
                 ) : (
