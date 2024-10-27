@@ -68,7 +68,7 @@ export const LoginComponent = ({type}: {type: "signup" | "signin"})=>{
             <div className="text-slate-400 m-2">
                 {type === "signin" ? "Don't have an account" : "Already have an account?"}
                 <Link to={type==="signin"?"/signup":"/signin"} className="p-2 underline">
-                {type==="signin"?"Sign In" : "Sign Up"}
+                {type==="signin"?"Sign Up" : "Sign In"}
                 </Link>
             </div>
 
