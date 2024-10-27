@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { Blogs } from './pages/Blogs'
 import Layout from './Layout'
-import { LoginComponent } from './components/LoginComponent'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 
