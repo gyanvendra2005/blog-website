@@ -107,7 +107,7 @@ export const BlogCard = ({
                             <span className="font-medium">{authorName}</span>
                             <span className="font-normal text-slate-500">
                                   
-                                {}
+                                {createdAt}
                             </span>
                         </div>
                         <button
