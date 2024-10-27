@@ -43,20 +43,6 @@ export const LoginComponent = ({type}: {type: "signup" | "signin"})=>{
                     <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder='Name' className='w-5/6 px-2 py-1 border rounded border-slate-200' />
                 </div>
             )}
-            {/* {type === "signin" && (
-             <div className="flex flex-col">
-            <h3 className="text-sm font-medium text-left py-2 px-3">Name</h3>
-        <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            className="w-5/6 px-2 py-1 border rounded border-slate-200"
-        />
-    </div>
-)} */}
-
-
             <h3 className='text-sm font-medium text-left py-2 px-3'>Email</h3>
             <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email' className='w-5/6 px-2 py-1 border rounded border-slate-200' />
 

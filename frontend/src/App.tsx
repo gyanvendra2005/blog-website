@@ -3,6 +3,7 @@ import { Blogs } from './pages/Blogs'
 import Layout from './Layout'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
+import HomePage from './pages/Home'
 
 function App() {
 
@@ -12,7 +13,11 @@ function App() {
        element:<Layout/>,
        children:[
         {
-          path:'/bogs',
+          path:'',
+          element:<HomePage />
+        },
+        {
+          path:'blogs',
           element:<Blogs/>
         },
         {

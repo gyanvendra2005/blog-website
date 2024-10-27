@@ -1,9 +1,12 @@
+import logo from '../assets/logo.jpg'
+
+
 const Headers = () => {
   return (
     <header>
         <div className='flex shadow h-14 justify-between'>
-            <div className='m-3 font-bold'>
-                <h1>Blog-Writer</h1>
+            <div className=' flex justify-center mt-1 mr-2 rounded-full h-46 w-46'>
+                <img src={logo} alt=""/>
             </div>
             <div className='flex '>
                 <div className='flex flex-col justify-center h-full mr-4 font-medium'>

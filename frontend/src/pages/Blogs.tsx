@@ -2,6 +2,7 @@ import { BlogCard } from "../components/BlogCard"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { Skeleton } from "../components/Skeleton";
 
 
 interface Blog{
@@ -52,7 +53,12 @@ export const Blogs = () => {
                         />
                     ))
                 ) : (
-                    <div>No blogs available.</div> // Fallback message
+                    <>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    </>
                 )}
         </div>
         </div>
