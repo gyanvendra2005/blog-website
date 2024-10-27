@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { Blogs } from './pages/Blogs'
 import Layout from './Layout'
 import { LoginComponent } from './components/LoginComponent'
+import { Signin } from './pages/Signin'
+import { Signup } from './pages/Signup'
 
 function App() {
 
@@ -11,16 +13,16 @@ function App() {
        element:<Layout/>,
        children:[
         {
-          path:'',
+          path:'/bogs',
           element:<Blogs/>
         },
         {
           path:'signup',
-          element:<LoginComponent type={'signup'} />
+          element:<Signup/>
         },
         {
           path:'signin',
-          element:<LoginComponent type={'signin'} />
+          element:<Signin />
         },
        ]
     }
