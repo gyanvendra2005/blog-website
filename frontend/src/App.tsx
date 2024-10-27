@@ -4,6 +4,7 @@ import Layout from './Layout'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 import HomePage from './pages/Home'
+import { MyBlogs } from './pages/MyBlog'
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
         {
           path:'blogs',
           element:<Blogs/>
+        },
+        {
+          path:'myblogs',
+          element:<MyBlogs />
         },
         {
           path:'signup',

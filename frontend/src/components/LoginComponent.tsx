@@ -31,7 +31,7 @@ export const LoginComponent = ({type}: {type: "signup" | "signin"})=>{
     }
     
 
-    return  <div className='bg-slate-300 h-screen flex justify-center '>
+    return  <div className='bg-slate-400 h-screen flex justify-center '>
     <div className='flex flex-col justify-center'>
         <div className='rounded-lg bg-white w-80 text-center shadow-lg shadow-gray-600'>
             <h1 className='font-bold text-4xl pt-6'>{type=== "signin"?"Sign In":"Sign Up"}</h1>

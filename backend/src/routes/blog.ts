@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
-import { verify } from "hono/jwt";
+import { verify, decode } from "hono/jwt";
 
 export const bookRouter = new Hono<{
     Bindings: {
@@ -13,30 +13,6 @@ export const bookRouter = new Hono<{
     }
 }>();
 
-// bookRouter.use(async (c, next) => {
-//     const jwt = c.req.header("Authorization");
-// 	if (!jwt) {
-// 		c.status(401);
-// 		return c.json({ error: "unauthorized" });
-// 	}
-// 	// const token = jwt.split(' ')[1];
-// 	const payload = await verify(jwt, c.env.JWT_SECRET);
-// 	if (payload) {
-// 		c.status(200);
-// 		c.set("userId", payload.id);
-// 	    await next()
-// 		// return c.json({ error: "unauthorized" });
-// 	}
-// 	else{
-// 		c.status(403);
-// 		return c.json({
-// 			message:"you are not login"
-// 		})
-// 	}
-// 	//  @ts-ignore
-	
-
-// });
 bookRouter.use(async (c, next) => {
     const jwt = c.req.header("Authorization");
     if (!jwt) {
@@ -44,15 +20,12 @@ bookRouter.use(async (c, next) => {
         return c.json({ error: "unauthorized" });
     }
 
-    // Uncomment if using Bearer token
-    // const token = jwt.split(' ')[1];
-
     try {
         const payload = await verify(jwt, c.env.JWT_SECRET);
         if (payload) {
 			// @ts-ignore
             c.set("userId", payload.id);
-            return next(); // Proceed to the next middleware
+            return next();
         } else {
             c.status(403);
             return c.json({ message: "you are not logged in" });
@@ -107,6 +80,7 @@ bookRouter.put('/', async (c) => {
 
 bookRouter.get('get/:id', async (c) => {
 	const id = c.req.param('id');
+	const payload = await verify(id, c.env.JWT_SECRET);
 	const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL	,
 	}).$extends(withAccelerate());
@@ -139,3 +113,45 @@ bookRouter.get('/bulk', async (c)=>{
 		posts
 	});
 })
+
+bookRouter.get('/myblog/:id', async (c) => {
+    const id = c.req.param('id');
+    let prisma;
+
+    try {
+        // Decode the JWT token
+        const { header, payload } = decode(id);
+        
+        console.log('Decoded Header:', header);
+        console.log('Decoded Payload:', payload);
+
+        // Check if payload has the expected structure
+        if (!payload || !payload.id) {
+            return c.status(401)
+        }
+
+        prisma = new PrismaClient({
+            datasourceUrl: c.env?.DATABASE_URL,
+        }).$extends(withAccelerate());
+
+        const posts = await prisma.post.findMany({
+            where: {
+                authorId: payload.id, // assuming payload contains authorId
+            },
+            select: {
+                content: true,
+                title: true,
+                author: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
+        });
+
+        return c.json({ posts });
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        return c.status(500)
+    } 
+});

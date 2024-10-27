@@ -31,13 +31,15 @@ export const Signin: React.FC = () => {
     return (
         <div className="grid grid-rows-2 md:grid-cols-2 overflow-hidden">
             <div>
-            <h2 className="text-3xl font-bold text-center mb-6">Welcome Back!</h2>
+            {/* <h2 className="text-3xl font-bold text-center mb-6">Welcome Back!</h2> */}
                 {!token ? (
                     <LoginComponent type="signin" />
                 ) : (
-                     <p className="text-lg text-center text-green-600">
+                     <div className="">
+                        <p className="text-lg text-center  text-green-600">
                           You are already logged in.
                          </p>
+                     </div>
                 )}
             </div>
             <div>

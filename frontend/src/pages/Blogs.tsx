@@ -9,12 +9,19 @@ interface Blog{
     content:string;
     title:string;
     name:string;
+    createdAt:Date;
     author:{
         name:string
-    }
+    };
+    
 }
 
 export const Blogs = () => {
+      
+    const token = localStorage.getItem("token")
+    if(!token){
+        alert("YOU ARE NOT SIGN IN")
+    }
 
     const [blogs, setBlogs] = useState<Blog[]>([]);
 
@@ -32,35 +39,47 @@ export const Blogs = () => {
 
 
     return (
+        
         <div className="flex justify-center">
-        <div className="">
-        {/* {Array.isArray(blogs) && blogs.length > 0 ? (
-            {blogs.map(blog => <BlogCard
-           authorName={blog.author.name}
-           title={blog.title}
-           content={blog.content}
-           publishedDate={"2021-01-05"}
-        />)})
-        : */}
-          {Array.isArray(blogs) && blogs.length > 0 ? (
+        <div className="flex flex-col items-center">
+            {token ? (
+                Array.isArray(blogs) && blogs.length > 0 ? (
                     blogs.map(blog => (
                         <BlogCard
-                            // key={blog.id} // Ensure you have a unique key
-                            authorName={blog.author.name||"Anoymnus"}
+                            authorName={blog.author.name || "Anonymous"}
                             title={blog.title}
                             content={blog.content}
-                            publishedDate={"2021-01-05"}
+                            createdAt={blog.createdAt}
                         />
                     ))
                 ) : (
-                    <>
-                    <Skeleton />
-                    <Skeleton />
-                    <Skeleton />
-                    <Skeleton />
-                    </>
-                )}
+                    <div className="flex flex-col items-center">
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                    </div>
+                )
+            ) : (
+                <div className="flex flex-col h-screen items-center text-center">
+                    <img 
+                        src="/path/to/error-image.png" 
+                        alt="Not Authenticated" 
+                        className="w-32 h-32 mb-4" // Adjust size as needed
+                    />
+                    <p className="text-red-600 font-semibold">
+                        You are not authenticated.
+                    </p>
+                    <p className="mb-2 text-gray-700">
+                        Join us today to access exclusive content!
+                    </p>
+                    <button className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-200">
+                        Sign Up
+                    </button>
+                </div>
+            )}
         </div>
-        </div>
+    </div>
+    
     )
 }
