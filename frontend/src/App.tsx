@@ -16,6 +16,10 @@ function App() {
         },
         {
           path:'signup',
+          element:<LoginComponent type={'signup'} />
+        },
+        {
+          path:'signin',
           element:<LoginComponent type={'signin'} />
         },
        ]
