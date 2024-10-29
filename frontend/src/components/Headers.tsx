@@ -67,8 +67,8 @@ const Headers = () => {
         <div className='flex justify-center mt-1 mr-2 rounded-full h-12 w-12'>
             <img src={logo} alt="Logo" className="h-full w-full object-cover rounded-full" />
         </div>
-        <nav className='flex-grow hidden lg:flex lg:justify-center'>
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+        <nav className='flex-grow  flex justify-center'>
+            <ul className="flex mt-4 font-medium flex-row lg:space-x-8 sm:space-x-4 lg:mt-0">
                 <li>
                     <NavLink
                         to="/"
@@ -97,6 +97,16 @@ const Headers = () => {
                         }
                     >
                        Blogs
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        to="/writeblog"
+                        className={({ isActive }) =>
+                            `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-700" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                    >
+                       Write Blog
                     </NavLink>
                 </li>
             </ul>
