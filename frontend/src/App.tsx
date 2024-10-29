@@ -5,6 +5,7 @@ import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 import HomePage from './pages/Home'
 import { MyBlogs } from './pages/MyBlog'
+import WriteContent from './pages/WriteContent'
 
 function App() {
 
@@ -33,6 +34,10 @@ function App() {
           path:'signin',
           element:<Signin />
         },
+        {
+          path:'writeblog',
+          element:<WriteContent />
+        }
        ]
     }
   ])
