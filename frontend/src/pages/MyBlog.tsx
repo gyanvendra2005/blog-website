@@ -35,7 +35,7 @@ export const MyBlogs = () => {
     return (
         <div className="flex justify-center">
         <div className="">
-          {Array.isArray(blogs) && blogs.length > 0 ? (
+          {token?Array.isArray(blogs) && blogs.length > 0 ? (
                     blogs.map(blog => (
                         <BlogCard
                             authorName={blog.author.name + " (you)"||"Anoymnus"}
@@ -51,7 +51,23 @@ export const MyBlogs = () => {
                     <Skeleton />
                     <Skeleton />
                     </>
-                )}
+                ):(
+                    <div className="flex flex-col h-screen items-center text-center">
+                        <img 
+                            src="/path/to/error-image.png" 
+                            alt="Not Authenticated" 
+                            className="w-32 h-32 mb-4" // Adjust size as needed
+                        />
+                        <p className="text-red-600 font-semibold">
+                            You are not authenticated.
+                        </p>
+                        <p className="mb-2 text-gray-700">
+                            Join us today to access exclusive content!
+                        </p>
+                        <button className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-200">
+                            Sign Up
+                        </button>
+                    </div>)}
         </div>
         </div>
     )
