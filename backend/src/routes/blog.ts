@@ -60,12 +60,12 @@ bookRouter.post('/', async (c) => {
 bookRouter.put('/', async (c) => {
 	const userId = c.get('userId');
 	const prisma = new PrismaClient({
-		datasourceUrl: c.env?.DATABASE_URL	,
+		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
 
 	const body = await c.req.json();
 	prisma.post.update({
-		where: {
+		where:{
 			id: body.id,
 			authorId: userId
 		},
@@ -155,3 +155,29 @@ bookRouter.get('/myblog/:id', async (c) => {
         return c.status(500)
     } 
 });
+
+
+bookRouter.get('/saved', async (c)=>{
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL	,
+	}).$extends(withAccelerate());
+	const posts = await prisma.post.findMany({
+		where:{
+          bookmark:true
+		},
+		select:{
+			content:true,
+			title:true,
+			author:{
+				select:{
+					name:true
+				}
+			}
+		}
+	});
+	return c.json({
+		posts
+	});
+})
+
+

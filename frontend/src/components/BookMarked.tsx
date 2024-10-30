@@ -11,18 +11,7 @@ interface BlogProps {
     averageRating?: number; // Optional average rating
 }
 
-interface Blog{
-    content:string;
-    title:string;
-    name:string;
-    // createdAt:Date;
-    author:{
-        name:string
-    };
-    
-}
-
-export const BlogCard = ({
+export const BookMarked = ({
     authorName,
     title,
     content,
@@ -30,29 +19,13 @@ export const BlogCard = ({
     averageRating = 0, // Default to 0 if no average rating is provided
 }: BlogProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(true);
     const [userRating, setUserRating] = useState(0); // State for user rating
 
     // Function to handle star click
     const handleStarClick = (rating: number) => {
         setUserRating(rating);
     };
-    const [blogs, setBlogs] = useState<Blog[]>([]);
-
-    const Bookmarke =  ()=>{
-        useEffect(() => {
-            axios.get(`${BACKEND_URL}/api/v1/blog/bulk`,{
-              headers:{
-                  Authorization:localStorage.getItem("token")
-              }
-            })
-            .then(response => {
-              setBlogs(response.data.posts);
-            })
-          }, [])
-    }
-
-
 
     return (
         <div className="flex justify-center w-screen">
@@ -69,7 +42,7 @@ export const BlogCard = ({
                         </div>
                         <button
                             className={`ml-auto ${isBookmarked ? 'text-blue-500' : 'text-gray-400'}`}
-                            onClick={Bookmarke}
+                            onClick={() => setIsBookmarked(!isBookmarked)}
                             aria-label={isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}
                         >
                             {isBookmarked ? '★' : '☆'}

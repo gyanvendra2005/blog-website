@@ -6,6 +6,7 @@ import { Signup } from './pages/Signup'
 import HomePage from './pages/Home'
 import { MyBlogs } from './pages/MyBlog'
 import WriteContent from './pages/WriteContent'
+import { Saved } from './pages/Saved'
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
         {
           path:'writeblog',
           element:<WriteContent />
+        },
+        {
+          path:'savedblogs',
+          element:<Saved />
         }
        ]
     }
