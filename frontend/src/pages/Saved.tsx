@@ -39,7 +39,7 @@ export const Saved = () => {
 
     return (
 
-<div className="flex justify-center">
+<div className="flex justify-center h-screen">
 <div className="flex flex-col items-center">
     {   token ? (
         Array.isArray(blogs) && blogs.length > 0 ? (

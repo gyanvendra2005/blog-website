@@ -36,7 +36,7 @@ if(token){
 
 const HomePage: React.FC = () => {
     return (
-        <div className="flex flex-col items-center justify-center p-8">
+        <div className="flex h-screen flex-col items-center justify-center p-8">
             <h1 className="text-4xl font-bold mb-4">Welcome to My Blog-App</h1>
             <p className="text-lg mb-6 text-center max-w-md">
                 This is a platform where you can share your thoughts, ideas, and stories with the world.
