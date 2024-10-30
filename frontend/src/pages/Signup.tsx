@@ -4,7 +4,7 @@ export const Signup = () => {
     const token = localStorage.getItem("token")
     return (
         <div>
-            <div className="grid h-screen grid-rows-2 md:grid-cols-2 overflow-hidden">
+            <div className="grid grid-col-1 lg:grid-cols-2">
 <div>
             {/* <h2 className="text-3xl font-bold text-center  mb-6">Welcome Back!</h2> */}
                 {!token ? (
@@ -15,7 +15,7 @@ export const Signup = () => {
                          </p>
                 )}
             </div>
-            <div>
+            <div className="hidden lg:block">
                 <Quote />
             </div> 
                 

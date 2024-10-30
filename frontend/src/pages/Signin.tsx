@@ -29,9 +29,8 @@ export const Signin: React.FC = () => {
     const token = localStorage.getItem("token");
 
     return (
-        <div className="grid grid-rows-2 h-screen md:grid-cols-2 overflow-hidden">
+        <div className="grid grid-col-1 lg:grid-cols-2 ">
             <div>
-            {/* <h2 className="text-3xl font-bold text-center mb-6">Welcome Back!</h2> */}
                 {!token ? (
                     <LoginComponent type="signin" />
                 ) : (
@@ -42,7 +41,7 @@ export const Signin: React.FC = () => {
                      </div>
                 )}
             </div>
-            <div>
+            <div className="hidden lg:block">
                 <Quote />
             </div>
         </div>
