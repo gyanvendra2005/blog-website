@@ -1,7 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
-import { BACKEND_URL } from "../config";
 
 interface BlogProps {
     authorName: string;
@@ -9,17 +6,6 @@ interface BlogProps {
     content: string;
     // createdAt: Date;
     averageRating?: number; // Optional average rating
-}
-
-interface Blog{
-    content:string;
-    title:string;
-    name:string;
-    // createdAt:Date;
-    author:{
-        name:string
-    };
-    
 }
 
 export const BlogCard = ({
@@ -37,22 +23,6 @@ export const BlogCard = ({
     const handleStarClick = (rating: number) => {
         setUserRating(rating);
     };
-    const [blogs, setBlogs] = useState<Blog[]>([]);
-
-    const Bookmarke =  ()=>{
-        useEffect(() => {
-            axios.get(`${BACKEND_URL}/api/v1/blog/bulk`,{
-              headers:{
-                  Authorization:localStorage.getItem("token")
-              }
-            })
-            .then(response => {
-              setBlogs(response.data.posts);
-            })
-          }, [])
-    }
-
-
 
     return (
         <div className="flex justify-center w-screen">
@@ -69,7 +39,7 @@ export const BlogCard = ({
                         </div>
                         <button
                             className={`ml-auto ${isBookmarked ? 'text-blue-500' : 'text-gray-400'}`}
-                            onClick={Bookmarke}
+                            onClick={() => setIsBookmarked(!isBookmarked)}
                             aria-label={isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}
                         >
                             {isBookmarked ? '★' : '☆'}
