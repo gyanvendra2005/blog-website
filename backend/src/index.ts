@@ -5,6 +5,7 @@ import { sign } from 'hono/jwt'
 import { userRouter } from './routes/user';
 import { bookRouter } from './routes/blog';
 import { cors } from 'hono/cors';
+import { bulkRouter } from './routes/publicBlog';
 
 export const app = new Hono<{
   Bindings: {
@@ -15,6 +16,7 @@ export const app = new Hono<{
 app.use("/*",cors())
 app.route("/api/v1/user",userRouter)
 app.route("/api/v1/blog",bookRouter)
+app.route("/api/v1/blogs",bulkRouter)
 
 // app.post('/api/v1/signup', async (c) => {
 //   const prisma = new PrismaClient({
